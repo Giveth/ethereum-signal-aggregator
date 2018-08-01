@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
 export default class App extends Component {
   static async getInitialProps({ query }) {
@@ -6,7 +6,7 @@ export default class App extends Component {
   }
 
   state = {
-    hello: "world",
+    hello: 'world',
   }
 
   render() {
