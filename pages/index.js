@@ -1,17 +1,34 @@
 import React, { Component } from 'react'
 
+import { Spring } from 'react-spring'
+import Layout from '../components/Layout'
+import Card from '../components/Card'
+import Text from '../components/Text'
+
 export default class App extends Component {
   static async getInitialProps({ query }) {
     return query
   }
 
   state = {
-    hello: 'world',
+    world: 'world',
   }
 
   render() {
-    const { hello } = this.state
+    const { world } = this.state
 
-    return <div>{hello}</div>
+    return (
+      <Layout p={3}>
+        <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
+          {styles => (
+            <Card p={3} style={styles}>
+              <Text textAlign="center" fontWeight="500">
+                Hello {world}!
+              </Text>
+            </Card>
+          )}
+        </Spring>
+      </Layout>
+    )
   }
 }

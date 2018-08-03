@@ -7,7 +7,8 @@
     "standard",
     "standard-react",
     "prettier",
-    "prettier/react"
+    "prettier/react",
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -17,7 +18,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "import"],
+  "plugins": ["prettier", "react", "import", "jsx-a11y"],
   "rules": {
     "import/no-unresolved": ["error", { "ignore": ["^react$", "^styled-components$"] }],
     "prettier/prettier": [

@@ -1,0 +1,45 @@
+---
+name: Card
+---
+
+import { Playground, PropsTable } from 'docz'
+import Card from "../components/Card"
+import Text from "../components/Text"
+
+# Card
+<PropsTable of={Card} />
+
+## Default
+<Playground>
+  <Card p={3}>
+    <Text textAlign="center" fontWeight="500">Hello world!</Text>
+  </Card>
+</Playground>
+
+## Fixed
+<Playground>
+  <Card
+    width={200}
+    height={200}
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+  >
+    <Text fontWeight="500">Hello world!</Text>
+  </Card>
+</Playground>
+
+## Click action
+<Playground>
+  <Card
+    width={200}
+    height={100}
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    onClick={() => alert('Action!')}
+  >
+    <Text fontWeight="500">Click me</Text>
+  </Card>
+</Playground>
+
