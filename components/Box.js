@@ -11,6 +11,7 @@ import {
   alignSelf,
   alignItems,
   justifyContent,
+  background,
 } from 'styled-system'
 
 export default styled.div`
@@ -25,4 +26,5 @@ export default styled.div`
   ${alignSelf}
   ${alignItems}
   ${justifyContent}
+  ${background}
 `
