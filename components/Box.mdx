@@ -1,0 +1,34 @@
+---
+name: Box
+---
+
+import { Playground, PropsTable } from 'docz'
+import Box from "../components/Box"
+import Text from "../components/Text"
+
+# Box
+<PropsTable of={Box} />
+
+Box is useful for aligning things and is more used as convenient replacement of a div acting as a container.
+
+## Default
+<Playground>
+  <Box background="red">
+    <Text
+      color="white"
+      textAlign="center"
+      fontWeight="500"
+    >Hello world!</Text>
+  </Box>
+</Playground>
+
+## Padding
+<Playground>
+  <Box p={3} background="red">
+    <Text
+      color="white"
+      textAlign="center"
+      fontWeight="500"
+    >Hello world!</Text>
+  </Box>
+</Playground>
