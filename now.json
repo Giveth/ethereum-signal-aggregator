@@ -1,0 +1,10 @@
+{
+  "name": "ethsignals",
+  "alias": "ethsignals.com",
+  "scale": {
+    "bru1": {
+      "min": 1,
+      "max": "auto"
+    }
+  }
+}
