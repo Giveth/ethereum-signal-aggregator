@@ -19,6 +19,11 @@ export default class App extends Component {
 
     return (
       <Layout p={3}>
+        <Card p={3}>
+          <Text textAlign="center" fontWeight="500">
+            This is a test!
+          </Text>
+        </Card>
         <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
           {styles => (
             <Card p={3} style={styles}>
