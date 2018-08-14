@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet()
     const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
+      sheet.collectStyles(<App {...props} />),
     )
     const styleTags = sheet.getStyleElement()
     return { ...page, styleTags }
@@ -23,6 +23,11 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             type="text/css"
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="/static/styles.css"
           />
           <link
             href="https://fonts.googleapis.com/css?family=Lekton:700|Open+Sans"
