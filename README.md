@@ -1,8 +1,6 @@
----
-description: Minimum bias ethereum signal aggregator
----
-
 # Ethereum-Signal-Aggregator
+
+Minimum bias ethereum signal aggregator
 
 ### Goal
 
