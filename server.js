@@ -17,8 +17,8 @@ app.prepare().then(() => {
   // use next.js
   server.get('*', (req, res) => handle(req, res))
 
-  server.listen(3000, err => {
+  server.listen(1234, err => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log('> Ready on http://localhost:1234')
   })
 })
