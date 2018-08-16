@@ -1,8 +1,10 @@
 html {
   box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+  overflow-wrap: break-word;
 }

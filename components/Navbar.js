@@ -27,6 +27,7 @@ const Items = styled.div`
   width: 150px;
   font-weight: 500;
   color: #8a94a6;
+  transition: all 0.15s ease 0s;
   &:hover {
     border-bottom: 2px solid #0c66ff;
     cursor: pointer;
