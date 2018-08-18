@@ -6,7 +6,7 @@ import Box from './Box'
 import Link from './Link'
 import { Logo } from './Icons'
 
-const Container = styled.div`
+const Container = styled(Box)`
   height: 3.5rem;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -19,7 +19,7 @@ const ContainItems = styled(Layout)`
   justify-content: space-between;
 `
 
-const Items = styled.div`
+const Item = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +28,12 @@ const Items = styled.div`
   font-weight: 500;
   color: #8a94a6;
   transition: all 0.15s ease 0s;
+  ${({ active }) => active && `
+    border-bottom: 2px solid #0c66ff;
+    cursor: pointer;
+    font-weight: 700;
+    color: black;
+  `}
   &:hover {
     border-bottom: 2px solid #0c66ff;
     cursor: pointer;
@@ -38,23 +44,19 @@ const Items = styled.div`
 
 export default class Navbar extends PureComponent {
   render() {
+    const { activeIndex } = this.props
+    const items = ['Proposals', 'Projects'].map((text, idx) => (
+      <Item width="150px" active={activeIndex === idx}>
+        <Link>{text}</Link>
+      </Item>
+    ))
     return (
       <Container>
         <ContainItems>
           <Box pl={4} display="flex">
             <Logo />
           </Box>
-          <Box display="flex">
-            <Items width="150px">
-              <Link>Proposals</Link>
-            </Items>
-            <Items width="150px">
-              <Link>Projects</Link>
-            </Items>
-            <Items width="150px">
-              <Link>About</Link>
-            </Items>
-          </Box>
+          <Box display="flex">{items}</Box>
         </ContainItems>
       </Container>
     )
