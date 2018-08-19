@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
+import { Link } from '../routes'
+
 import Layout from './Layout'
 import Box from './Box'
-import Link from './Link'
+import StyledLink from './Link'
 import { Logo } from './Icons'
 
 const Container = styled(Box)`
@@ -42,19 +44,27 @@ const Item = styled.div`
   }
 `
 
+const StyledLogo = styled(Logo)`
+  &:hover {
+    cursor: pointer;
+  }
+`
+
 export default class Navbar extends PureComponent {
   render() {
     const { activeIndex } = this.props
     const items = ['Proposals', 'Projects'].map((text, idx) => (
-      <Item width="150px" active={activeIndex === idx}>
-        <Link>{text}</Link>
-      </Item>
+      <Link route={`/${text.toLowerCase()}`}>
+        <Item width="150px" active={activeIndex === idx}>
+          <StyledLink>{text}</StyledLink>
+        </Item>
+      </Link>
     ))
     return (
       <Container>
         <ContainItems>
           <Box pl={4} display="flex">
-            <Logo />
+            <Link route="/"><StyledLogo /></Link>
           </Box>
           <Box display="flex">{items}</Box>
         </ContainItems>
