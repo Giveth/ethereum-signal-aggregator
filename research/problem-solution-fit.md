@@ -1,4 +1,4 @@
-# Problem-Solution fit
+# Hypothesis 2: TA = Foundations in Ethereum
 
 TA: Foundations in Ethereum \(EF, Parity, Status, Gnosis, Giveth, Aragon, Cryptofunds [etc](https://medium.com/eip0-summit/eip0-summit-statement-of-intent-to-support-ethereum-governance-initiatives-e54ff782933).\)
 
