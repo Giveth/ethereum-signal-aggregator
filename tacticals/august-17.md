@@ -1,4 +1,4 @@
-# August 17
+# August 14
 
 * [x] Check-in round
 * [ ] Work until X
