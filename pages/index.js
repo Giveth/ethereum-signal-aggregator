@@ -11,7 +11,7 @@ import Text from '../components/Text'
 
 import proposals from '../data/proposals'
 
-const items = proposals.map(proposal => (
+const items = proposals.map(({ id, title }) => (
   <Card p={3} m={3} width="300px">
     <Box
       display="flex"
@@ -21,8 +21,7 @@ const items = proposals.map(proposal => (
       pb={2}
     >
       <Text color="#0A1F44" fontWeight="500" fontSize="24px">
-        EIP
-        {proposal.id}
+        EIP{id}
       </Text>
       <Box
         display="flex"
@@ -37,7 +36,9 @@ const items = proposals.map(proposal => (
           color="white"
           text="DRAFT"
         />
-        <Link />
+        <a href={'https://eips.ethereum.org/EIPS/eip-' + id}>
+          <Link />
+        </a>
       </Box>
     </Box>
     <Box display="flex" flexDirection="column" pt={2}>
@@ -50,7 +51,9 @@ const items = proposals.map(proposal => (
         width="60px"
         mb={2}
       />
-      <Text color="#8A94A6" fontWeight="500">{proposal.title}</Text>
+      <Text color="#8A94A6" fontWeight="500">
+        {title}
+      </Text>
     </Box>
   </Card>
 ))
