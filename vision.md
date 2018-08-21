@@ -4,10 +4,7 @@
 
 We need a website in the community that we can trust - a fairly high source of truth in terms of recognized people and their skill sets. The main point is to get a website that curates signals of high source of truth which can be used to get an overview of the overall community and its health. List of signals that are helpful and will help to pinpoint what the state of the community really is.
 
-What the end goal is
-
-* A general place or meeting point for the Ethereum community and newcomers.
-* A community-curated hub that clears out some of the noise around key developments and decisions facing Ethereum
+The end goal is a community-curated hub that clears out some of the noise around key developments and decisions facing Ethereum
 
 ### Success criteria
 
