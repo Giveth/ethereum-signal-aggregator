@@ -24,7 +24,7 @@ This project is a result of the EIP0 inititative - currently in a brainstorming 
 
 ### Development
 
-Just run this command `npm run dev` and then go to `http://localhost:3000`.
+Just run this command `npm run dev` and then go to `http://localhost:1234`.
 
 ### Production
 
@@ -32,5 +32,4 @@ Install now-cli with `npm install -g now`. You can then use `now` command in the
 
 ### Component documentation
 
-The project is using [docz](https://github.com/pedronauck/docz) to document components. You can run `npm run docz:dev` to spin up the docz server and see the documentation.
-
+The project is using [docz](https://github.com/pedronauck/docz) to document components. You can run `npm run docz:dev` to spin up the docz server and see the documentation. Go to  `http://localhost:3000`.
