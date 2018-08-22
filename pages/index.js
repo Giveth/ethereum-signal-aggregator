@@ -8,6 +8,7 @@ import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import Text from '../components/Text'
+// import ProgressBar from '../components/ProgressBar'
 
 import proposals from '../data/proposals'
 
@@ -20,8 +21,9 @@ const items = proposals.map(({ id, title }) => (
       borderBottom="1px solid #DDDDDD"
       pb={2}
     >
-      <Text color="#0A1F44" fontWeight="500" fontSize="24px">
-        EIP{id}
+      <Text color="#0A1F44" fontWeight="700" fontSize="24px">
+        EIP
+        {id}
       </Text>
       <Box
         display="flex"
@@ -42,19 +44,29 @@ const items = proposals.map(({ id, title }) => (
       </Box>
     </Box>
     <Box display="flex" flexDirection="column" pt={2}>
-      <Badge
-        bg="#BBBBBB"
-        border="2px solid #888888"
-        borderRadius=".25rem"
-        color="white"
-        text="Core"
-        width="60px"
-        mb={2}
-      />
+      <Box display="flex">
+        <Badge
+          bg="#BBBBBB"
+          border="2px solid #888888"
+          borderRadius=".25rem"
+          color="white"
+          text="Core"
+          mb={2}
+        />
+      </Box>
       <Text color="#8A94A6" fontWeight="500">
         {title}
       </Text>
     </Box>
+    {/* <Text color="#0A1F44" fontWeight="700" fontSize="20px">
+      Stances
+    </Text>
+    <Box>
+      <Text color="#ACB9CF" fontSize="14px">
+        Yes
+      </Text>
+      <ProgressBar height="6px" bg="black" progress={1} />
+    </Box> */}
   </Card>
 ))
 
