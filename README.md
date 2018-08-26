@@ -1,10 +1,10 @@
-# Ethereum-Signal-Aggregator
+# Ethereum Signal Aggregator
 
 Minimum bias ethereum signal aggregator
 
 ## Goal
 
-Build website featuring aggregated data of Ethereum stakeholders.
+Build website featuring aggregated data of Ethereum signals.
 
 ## Contribution
 
