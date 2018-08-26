@@ -29,10 +29,6 @@ export default class MyDocument extends Document {
             type="text/css"
             href="/static/styles.css"
           />
-          <link
-            href="https://fonts.googleapis.com/css?family=Lekton:700|Open+Sans"
-            rel="stylesheet"
-          />
           {this.props.styleTags}
         </Head>
         <body>
