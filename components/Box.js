@@ -27,4 +27,5 @@ export default styled.div`
   ${alignItems}
   ${justifyContent}
   ${borders}
+  ${({ cursor }) => `cursor: ${cursor}`};
 `
