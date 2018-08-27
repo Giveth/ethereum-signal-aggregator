@@ -3,13 +3,14 @@ import React, { Component } from 'react'
 import springs from '../utils/springs'
 
 import { Trail, animated } from 'react-spring'
-import { Link } from '../components/Icons'
+import { ArrowDown, Link } from '../components/Icons'
 import Badge from '../components/Badge'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import Text from '../components/Text'
+import SearchBar from '../components/SearchBar'
 // import ProgressBar from '../components/ProgressBar'
 
 import proposals from '../data/proposals'
@@ -26,7 +27,9 @@ const getStatusBadge = (status, selected) => {
     color = selected ? 'white' : '#3ED3A3'
     border = '#33B38A'
   }
-  if (['deferred', 'final', 'last-call'].filter(item => status === item).length) {
+  if (
+    ['deferred', 'final', 'last-call'].filter(item => status === item).length
+  ) {
     selected = false
     bg = 'white'
     color = '#0D55CF'
@@ -34,7 +37,9 @@ const getStatusBadge = (status, selected) => {
   return (
     <Badge
       bg={bg}
-      border={`2px ${selected ? 'solid' : 'dashed'} ${selected ? border : color}`}
+      border={`2px ${selected ? 'solid' : 'dashed'} ${
+        selected ? border : color
+      }`}
       borderRadius="1rem"
       color={color}
       text={status.toUpperCase()}
@@ -59,7 +64,7 @@ const getCategoryBadge = (category, selected) => {
 const items = proposals
   .filter(proposal => proposal.visible)
   .map(({ id, title, status, category }) => (
-    <Card p={3} m={3} width="300px">
+    <Card m={3} p={3} width="300px">
       <Box
         display="flex"
         alignItems="center"
@@ -71,11 +76,7 @@ const items = proposals
           EIP
           {id}
         </Text>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
+        <Box display="flex" alignItems="center" justifyContent="space-between">
           {getStatusBadge(status, true)}
           <a href={'https://eips.ethereum.org/EIPS/eip-' + id}>
             <Link />
@@ -83,9 +84,7 @@ const items = proposals
         </Box>
       </Box>
       <Box display="flex" flexDirection="column" pt={2}>
-        <Box display="flex">
-          {getCategoryBadge(category, true)}
-        </Box>
+        <Box display="flex">{getCategoryBadge(category, true)}</Box>
         <Text color="#8A94A6" fontWeight="500">
           {title}
         </Text>
@@ -117,8 +116,17 @@ export default class App extends Component {
     return (
       <div>
         <Navbar activeIndex={0} />
-        <Layout display="flex" justifyContent="center">
-          <Box display="flex" flexWrap="wrap">
+        <Layout>
+          <Box display="flex" justifyContent="space-between" alignItems="center" mt={3} mx={4}>
+            <Box display="flex" cursor="pointer">
+              <Text color="#888888" fontWeight="500">
+                Filter
+              </Text>
+              <ArrowDown style={{ transform: 'rotate(180deg)' }} />
+            </Box>
+            <SearchBar onChange={(e) => console.log(e.target.value)} />
+          </Box>
+          <Box display="flex" justifyContent="center" flexWrap="wrap">
             <Trail
               native
               config={springs.swift}
@@ -126,7 +134,7 @@ export default class App extends Component {
               to={{ opacity: 1 }}
               keys={items}
             >
-              {items.map(item => styles => (
+              {items.map((item) => styles => (
                 <animated.div style={styles}>{item}</animated.div>
               ))}
             </Trail>
