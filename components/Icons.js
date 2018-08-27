@@ -1,5 +1,78 @@
 import React from 'react'
 
+export const Search = props => (
+  <svg
+    width="16"
+    height="17"
+    viewBox="0 0 16 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <rect
+      width="15.7434"
+      height="15.5"
+      fill="black"
+      fillOpacity="0"
+      transform="translate(0.183716 0.75)"
+    />
+    <path
+      opacity="0.54"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M10.3526 9.79166H9.83179L9.65074 9.6147C10.2903 8.88039 10.6793 7.92843 10.6793 6.88541C10.6793 4.56687 8.77042 2.68749 6.41546 2.68749C4.0605 2.68749 2.15161 4.56687 2.15161 6.88541C2.15161 9.20395 4.0605 11.0833 6.41546 11.0833C7.47486 11.0833 8.44112 10.701 9.18696 10.072L9.36801 10.2489V10.7604L12.6466 13.9838L13.6246 13.0208L10.3526 9.79166ZM6.4154 9.79168C4.78464 9.79168 3.4635 8.49097 3.4635 6.88543C3.4635 5.28054 4.78464 3.97918 6.4154 3.97918C8.0455 3.97918 9.36729 5.28054 9.36729 6.88543C9.36729 8.49097 8.0455 9.79168 6.4154 9.79168Z"
+      fill="black"
+    />
+  </svg>
+)
+
+export const ArrowDown = props => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" {...props}>
+    <rect
+      width="20"
+      height="20"
+      fill="black"
+      fillOpacity="0"
+      transform="translate(0 20) scale(1 -1)"
+    />
+    <path
+      d="M10 11.3215L6.42259 7.74409C6.09715 7.41865 5.56951 7.41865 5.24408 7.74409C4.91864 8.06952 4.91864 8.59716 5.24408 8.9226L9.41074 13.0893C9.73618 13.4147 10.2638 13.4147 10.5893 13.0893L14.7559 8.9226C15.0814 8.59716 15.0814 8.06952 14.7559 7.74409C14.4305 7.41865 13.9028 7.41865 13.5774 7.74409L10 11.3215Z"
+      fill="#051033"
+      fillOpacity="0.01"
+    />
+    <mask
+      id="mask1"
+      maskType="alpha"
+      maskUnits="userSpaceOnUse"
+      x="5"
+      y="7"
+      width="10"
+      height="7"
+    >
+      <path
+        d="M10 11.3215L6.42259 7.74409C6.09715 7.41865 5.56951 7.41865 5.24408 7.74409C4.91864 8.06952 4.91864 8.59716 5.24408 8.9226L9.41074 13.0893C9.73618 13.4147 10.2638 13.4147 10.5893 13.0893L14.7559 8.9226C15.0814 8.59716 15.0814 8.06952 14.7559 7.74409C14.4305 7.41865 13.9028 7.41865 13.5774 7.74409L10 11.3215Z"
+        fill="white"
+      />
+    </mask>
+    <g mask="url(#mask1)">
+      <rect
+        width="20"
+        height="20"
+        fill="black"
+        fillOpacity="0"
+        transform="translate(5 23) scale(1 -1)"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M5 23H25V3H5V23Z"
+        fill="#182C4F"
+        fillOpacity="0.6"
+      />
+    </g>
+  </svg>
+)
+
 export const Logo = props => (
   <svg
     width="91"
@@ -52,16 +125,8 @@ export const Link = props => (
       />
     </mask>
     <g mask="url(#mask0)">
-      <rect
-        width="18"
-        height="18"
-        fill="black"
-        transform="translate(0 -3)"
-      />
-      <path
-        d="M0 -3H18V15H0V-3Z"
-        fill="#182C4F"
-      />
+      <rect width="18" height="18" fill="black" transform="translate(0 -3)" />
+      <path d="M0 -3H18V15H0V-3Z" fill="#182C4F" />
     </g>
   </svg>
 )
