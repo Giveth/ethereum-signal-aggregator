@@ -54,7 +54,7 @@ export default class Navbar extends PureComponent {
   render() {
     const { activeIndex } = this.props
     const items = ['Proposals', 'Projects'].map((text, idx) => (
-      <Link route={`/${text.toLowerCase()}`}>
+      <Link key={idx} route={`/${text.toLowerCase()}`}>
         <Item width="150px" active={activeIndex === idx}>
           <StyledLink>{text}</StyledLink>
         </Item>
