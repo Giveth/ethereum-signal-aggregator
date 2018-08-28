@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import springs from '../utils/springs'
 
-import { Trail, animated } from 'react-spring'
+import { Spring, animated } from 'react-spring'
 import { ArrowDown, Link } from '../components/Icons'
 import Badge from '../components/Badge'
 import Box from '../components/Box'
@@ -61,83 +61,104 @@ const getCategoryBadge = (category, selected) => {
   )
 }
 
-const items = proposals
-  .filter(proposal => proposal.visible)
-  .map(({ id, title, status, category }) => (
-    <Card m={3} p={3} width="300px">
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        borderBottom="1px solid #DDDDDD"
-        pb={2}
-      >
-        <Text color="#0A1F44" fontWeight="700" fontSize="24px">
-          EIP
-          {id}
-        </Text>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          {getStatusBadge(status, true)}
-          <a href={'https://eips.ethereum.org/EIPS/eip-' + id}>
-            <Link />
-          </a>
-        </Box>
-      </Box>
-      <Box display="flex" flexDirection="column" pt={2}>
-        <Box display="flex">{getCategoryBadge(category, true)}</Box>
-        <Text color="#8A94A6" fontWeight="500">
-          {title}
-        </Text>
-      </Box>
-      {/* <Text color="#0A1F44" fontWeight="700" fontSize="20px">
-      Stances
-    </Text>
-    <Box>
-      <Text color="#ACB9CF" fontSize="14px">
-        Yes
-      </Text>
-      <ProgressBar height="6px" bg="black" progress={1} />
-    </Box> */}
-    </Card>
-  ))
-
 export default class App extends Component {
   static async getInitialProps({ query }) {
     return query
   }
 
   state = {
-    world: 'world',
+    search: '',
   }
 
   render() {
-    const { world } = this.state
+    const { search } = this.state
+
+    const items = proposals
+      .filter(({ id, title, visible }) => {
+        let filterSearch = true
+        if (search) {
+          const text = 'eip' + id + ' ' + title
+          filterSearch = text.toLowerCase().indexOf(search) > -1
+        }
+
+        return visible && filterSearch
+      })
+      .map(({ id, title, status, category }) => (
+        <Card m={3} p={3} width="300px">
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            borderBottom="1px solid #DDDDDD"
+            pb={2}
+          >
+            <Text color="#0A1F44" fontWeight="700" fontSize="24px">
+              EIP
+              {id}
+            </Text>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              {getStatusBadge(status, true)}
+              <a href={'https://eips.ethereum.org/EIPS/eip-' + id}>
+                <Link />
+              </a>
+            </Box>
+          </Box>
+          <Box display="flex" flexDirection="column" pt={2}>
+            <Box display="flex">{getCategoryBadge(category, true)}</Box>
+            <Text color="#8A94A6" fontWeight="500">
+              {title}
+            </Text>
+          </Box>
+          {/* <Text color="#0A1F44" fontWeight="700" fontSize="20px">
+        Stances
+      </Text>
+      <Box>
+        <Text color="#ACB9CF" fontSize="14px">
+          Yes
+        </Text>
+        <ProgressBar height="6px" bg="black" progress={1} />
+      </Box> */}
+        </Card>
+      ))
 
     return (
       <div>
         <Navbar activeIndex={0} />
         <Layout>
-          <Box display="flex" justifyContent="space-between" alignItems="center" mt={3} mx={4}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mt={3}
+            mx={4}
+          >
             <Box display="flex" cursor="pointer">
               <Text color="#888888" fontWeight="500">
                 Filter
               </Text>
               <ArrowDown style={{ transform: 'rotate(180deg)' }} />
             </Box>
-            <SearchBar onChange={(e) => console.log(e.target.value)} />
+            <SearchBar
+              onChange={e =>
+                this.setState({ search: e.target.value.toLowerCase() })
+              }
+            />
           </Box>
           <Box display="flex" justifyContent="center" flexWrap="wrap">
-            <Trail
-              native
-              config={springs.swift}
-              from={{ opacity: 0 }}
-              to={{ opacity: 1 }}
-              keys={items}
-            >
-              {items.map((item) => styles => (
-                <animated.div style={styles}>{item}</animated.div>
-              ))}
-            </Trail>
+            {items.map((item, idx) => (
+              <Spring
+                native
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                delay={idx * 50}
+                key={idx}
+                children={(styles) => <animated.div style={styles}>{item}</animated.div>}
+              />
+            ))}
           </Box>
         </Layout>
       </div>
