@@ -7,7 +7,6 @@ const Container = styled(Box)`
   padding: .25rem .5rem;
   text-align: center;
   font-size: 14px;
-  cursor: default;
   ${({ borderRadius }) => `border-radius: ${borderRadius}`}
 `
 
