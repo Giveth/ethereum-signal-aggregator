@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import springs from '../utils/springs'
-
 import { Spring, animated } from 'react-spring'
 import { ArrowDown, Link } from '../components/Icons'
 import Badge from '../components/Badge'
@@ -15,7 +13,8 @@ import SearchBar from '../components/SearchBar'
 
 import proposals from '../data/proposals'
 
-const getStatusBadge = (status, selected) => {
+const StatusBadge = props => {
+  const { status, selected } = props
   let bg, color, border
   if (status === 'draft') {
     bg = selected ? '#F7BA44' : 'white'
@@ -30,9 +29,9 @@ const getStatusBadge = (status, selected) => {
   if (
     ['deferred', 'final', 'last-call'].filter(item => status === item).length
   ) {
-    selected = false
-    bg = 'white'
-    color = '#0D55CF'
+    bg = selected ? '#0C66FF' : 'white'
+    color = selected ? 'white' : '#0C66FF'
+    border = '#0D55CF'
   }
   return (
     <Badge
@@ -44,11 +43,14 @@ const getStatusBadge = (status, selected) => {
       color={color}
       text={status.toUpperCase()}
       mr={3}
+      cursor={props.onClick ? 'pointer' : 'default'}
+      {...props}
     />
   )
 }
 
-const getCategoryBadge = (category, selected) => {
+const CategoryBadge = props => {
+  const { category, selected } = props
   return (
     <Badge
       bg={selected ? '#BBBBBB' : 'white'}
@@ -57,6 +59,8 @@ const getCategoryBadge = (category, selected) => {
       color={selected ? 'white' : '#888888'}
       text={category[0].toUpperCase() + category.slice(1)}
       mb={2}
+      cursor={props.onClick ? 'pointer' : 'default'}
+      {...props}
     />
   )
 }
@@ -68,20 +72,70 @@ export default class App extends Component {
 
   state = {
     search: '',
+    activeFilter: false,
+    selectedStatusBadges: [],
+    selectedCategoryBadges: [],
+  }
+
+  statusBadgeToggle = badge => {
+    let { selectedStatusBadges } = this.state
+    if (selectedStatusBadges.filter(item => item === badge).length) {
+      this.setState({
+        selectedStatusBadges: selectedStatusBadges.filter(
+          item => item !== badge,
+        ),
+      })
+    } else {
+      this.state.selectedStatusBadges.push(badge)
+      this.setState({})
+    }
+  }
+
+  categoryBadgeToggle = badge => {
+    let { selectedCategoryBadges } = this.state
+    if (selectedCategoryBadges.filter(item => item === badge).length) {
+      this.setState({
+        selectedCategoryBadges: selectedCategoryBadges.filter(
+          item => item !== badge,
+        ),
+      })
+    } else {
+      this.state.selectedCategoryBadges.push(badge)
+      this.setState({})
+    }
   }
 
   render() {
-    const { search } = this.state
+    const {
+      search,
+      activeFilter,
+      selectedStatusBadges,
+      selectedCategoryBadges,
+    } = this.state
 
     const items = proposals
-      .filter(({ id, title, visible }) => {
+      .filter(({ id, title, visible, status, category }) => {
         let filterSearch = true
+        let filterStatusBadges = true
+        let filterCategoryBadges = true
         if (search) {
           const text = 'eip' + id + ' ' + title
           filterSearch = text.toLowerCase().indexOf(search) > -1
         }
+        if (selectedStatusBadges.length) {
+          filterStatusBadges = selectedStatusBadges.filter(
+            badge => badge === status,
+          ).length
+        }
+        if (selectedCategoryBadges.length) {
+          filterCategoryBadges = selectedCategoryBadges.filter(
+            badge => badge === category,
+          ).length
+        }
 
-        return visible && filterSearch
+        return (
+          visible && filterSearch && filterStatusBadges && filterCategoryBadges
+        )
       })
       .map(({ id, title, status, category }) => (
         <Card m={3} p={3} width="300px">
@@ -101,14 +155,19 @@ export default class App extends Component {
               alignItems="center"
               justifyContent="space-between"
             >
-              {getStatusBadge(status, true)}
-              <a href={'https://eips.ethereum.org/EIPS/eip-' + id}>
+              <StatusBadge status={status} selected />
+              <a
+                target="_blank"
+                href={'https://eips.ethereum.org/EIPS/eip-' + id}
+              >
                 <Link />
               </a>
             </Box>
           </Box>
           <Box display="flex" flexDirection="column" pt={2}>
-            <Box display="flex">{getCategoryBadge(category, true)}</Box>
+            <Box display="flex">
+              <CategoryBadge category={category} selected />
+            </Box>
             <Text color="#8A94A6" fontWeight="500">
               {title}
             </Text>
@@ -136,11 +195,17 @@ export default class App extends Component {
             mt={3}
             mx={4}
           >
-            <Box display="flex" cursor="pointer">
+            <Box
+              display="flex"
+              cursor="pointer"
+              onClick={() => this.setState({ activeFilter: !activeFilter })}
+            >
               <Text color="#888888" fontWeight="500">
                 Filter
               </Text>
-              <ArrowDown style={{ transform: 'rotate(180deg)' }} />
+              <ArrowDown
+                style={{ transform: activeFilter ? '' : 'rotate(180deg)' }}
+              />
             </Box>
             <SearchBar
               onChange={e =>
@@ -148,6 +213,69 @@ export default class App extends Component {
               }
             />
           </Box>
+          {activeFilter && (
+            <>
+              <Box mx={4}>
+                <Box display="flex" alignItems="center" mt={3}>
+                  <Text color="#888888" fontWeight="700" fontSize="24px" mr={3}>
+                    Status:
+                  </Text>
+                  <Text color="#888888" fontWeight="700" mr={3}>
+                    Active
+                  </Text>
+                  {['draft', 'last-call', 'accepted'].map(badge => (
+                    <StatusBadge
+                      status={badge}
+                      selected={
+                        selectedStatusBadges.filter(item => item === badge)
+                          .length
+                      }
+                      onClick={() => this.statusBadgeToggle(badge)}
+                    />
+                  ))}
+                  <Text color="#888888" fontWeight="700" mx={3}>
+                    Historical
+                  </Text>
+                  {['deferred', 'final'].map(badge => (
+                    <StatusBadge
+                      status={badge}
+                      selected={
+                        selectedStatusBadges.filter(item => item === badge)
+                          .length
+                      }
+                      onClick={() => this.statusBadgeToggle(badge)}
+                    />
+                  ))}
+                </Box>
+              </Box>
+              <Box mx={3} mt={3}>
+                <Text color="#888888" fontWeight="500" mx={3}>
+                  Category
+                </Text>
+                <Box mx={3} mt={2} display="flex" borderTop="1px solid #DDDDDD">
+                  {[
+                    'core',
+                    'networking',
+                    'interface',
+                    'erc',
+                    'informational',
+                    'meta',
+                  ].map(badge => (
+                    <CategoryBadge
+                      category={badge}
+                      selected={
+                        selectedCategoryBadges.filter(item => item === badge)
+                          .length
+                      }
+                      onClick={() => this.categoryBadgeToggle(badge)}
+                      mr={3}
+                      mt={3}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            </>
+          )}
           <Box display="flex" justifyContent="center" flexWrap="wrap">
             {items.map((item, idx) => (
               <Spring
@@ -156,7 +284,9 @@ export default class App extends Component {
                 to={{ opacity: 1 }}
                 delay={idx * 50}
                 key={idx}
-                children={(styles) => <animated.div style={styles}>{item}</animated.div>}
+                children={styles => (
+                  <animated.div style={styles}>{item}</animated.div>
+                )}
               />
             ))}
           </Box>
