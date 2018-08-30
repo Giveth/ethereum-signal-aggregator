@@ -138,15 +138,19 @@ export default class App extends Component {
         )
       })
       .map(({ id, title, status, category }) => (
-        <Card m={3} p={3} width="300px">
-          <Box
+        <Card m={3} p={0} width="300px">
+          <Box 
+		    p={3}
+			pb={2}
             display="flex"
             alignItems="center"
             justifyContent="space-between"
-            borderBottom="1px solid #DDDDDD"
-            pb={2}
+			borderRadius=".25rem"
+            borderBottom="1px solid #777"
+			bg="#ccc"
+            
           >
-            <Text color="#0A1F44" fontWeight="700" fontSize="24px">
+            <Text color="#FFF" fontWeight="700" fontSize="30px">
               EIP
               {id}
             </Text>
@@ -155,7 +159,9 @@ export default class App extends Component {
               alignItems="center"
               justifyContent="space-between"
             >
-              <StatusBadge status={status} selected />
+              <StatusBadge status={status} 
+			    border="solid"
+			  />
               <a
                 target="_blank"
                 href={'https://eips.ethereum.org/EIPS/eip-' + id}
@@ -164,7 +170,7 @@ export default class App extends Component {
               </a>
             </Box>
           </Box>
-          <Box display="flex" flexDirection="column" pt={2}>
+          <Box  display="flex" flexDirection="column" p={3}>
             <Box display="flex">
               <CategoryBadge category={category} selected />
             </Box>
