@@ -10,7 +10,7 @@ import Text from '../components/Text'
 import projects from '../data/projects'
 
 const items = projects.map(project => (
-  <Card p={3} m={3} width="300px">
+  <Card p={3} m={3} width="300px" height="200px">
     <Box
       display="flex"
       alignItems="center"
