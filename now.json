@@ -1,6 +1,6 @@
 {
   "name": "ethsignals",
-  "alias": "ethsignals.com",
+  "alias": ["ethsignals.com", "www.ethsignals.com"],
   "scale": {
     "bru1": {
       "min": 1,
