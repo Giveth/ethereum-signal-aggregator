@@ -12,6 +12,7 @@ import {
   alignItems,
   justifyContent,
   borders,
+  borderRadius,
 } from 'styled-system'
 
 export default styled.div`
@@ -27,5 +28,6 @@ export default styled.div`
   ${alignItems}
   ${justifyContent}
   ${borders}
+  ${borderRadius}
   ${({ cursor }) => cursor && `cursor: ${cursor}`};
 `
