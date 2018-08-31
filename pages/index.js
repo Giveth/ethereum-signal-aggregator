@@ -79,8 +79,8 @@ export default class App extends Component {
   state = {
     search: '',
     activeFilter: false,
-    selectedStatusBadges: [],
-    selectedCategoryBadges: [],
+    selectedStatusBadges: ['draft', 'last-call', 'accepted'],
+    selectedCategoryBadges: ['core', 'networking', 'interface', 'erc', 'informational', 'meta'],
   }
 
   statusBadgeToggle = badge => {
