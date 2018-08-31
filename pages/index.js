@@ -13,8 +13,7 @@ import SearchBar from '../components/SearchBar'
 
 import proposals from '../data/proposals'
 
-const StatusBadge = props => {
-  const { status, selected } = props
+const getStatusBadgeColors = (status, selected) => {
   let bg, color, border
   if (status === 'draft') {
     bg = selected ? '#F7BA44' : 'white'
@@ -33,6 +32,13 @@ const StatusBadge = props => {
     color = selected ? 'white' : '#0C66FF'
     border = '#0D55CF'
   }
+
+  return { bg, color, border }
+}
+
+const StatusBadge = props => {
+  const { status, selected } = props
+  const { bg, color, border } = getStatusBadgeColors(status, selected)
   return (
     <Badge
       bg={bg}
@@ -139,16 +145,13 @@ export default class App extends Component {
       })
       .map(({ id, title, status, category }) => (
         <Card m={3} p={0} width="300px">
-          <Box 
-		    p={3}
-			pb={2}
+          <Box
+            p={2}
             display="flex"
             alignItems="center"
             justifyContent="space-between"
-			borderRadius=".25rem"
-            borderBottom="1px solid #777"
-			bg="#ccc"
-            
+            borderRadius="4px 4px 0px 0px"
+            bg={getStatusBadgeColors(status, false).color}
           >
             <Text color="#FFF" fontWeight="700" fontSize="30px">
               EIP
@@ -159,9 +162,7 @@ export default class App extends Component {
               alignItems="center"
               justifyContent="space-between"
             >
-              <StatusBadge status={status} 
-			    border="solid"
-			  />
+              <StatusBadge status={status} border="solid" />
               <a
                 target="_blank"
                 href={'https://eips.ethereum.org/EIPS/eip-' + id}
@@ -170,7 +171,7 @@ export default class App extends Component {
               </a>
             </Box>
           </Box>
-          <Box  display="flex" flexDirection="column" p={3}>
+          <Box display="flex" flexDirection="column" p={3}>
             <Box display="flex">
               <CategoryBadge category={category} selected />
             </Box>
