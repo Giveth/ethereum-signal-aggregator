@@ -127,7 +127,7 @@ export default [
     authors: ['Peter Murray, Nate Welch, Joe Messerman'],
     status: 'last-call',
     type: 'standards track',
-    category: 'ERC',
+    category: 'erc',
     created: '2018-06-22',
     requires: [],
     visible: true,
