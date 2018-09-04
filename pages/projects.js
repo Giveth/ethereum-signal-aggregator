@@ -34,8 +34,8 @@ export default class App extends Component {
     return (
       <div>
         <Navbar activeIndex={1} />
-        <Layout display="flex" justifyContent="center">
-          <Box display="flex" flexWrap="wrap">
+        <Layout>
+          <Box display="flex" justifyContent="center" flexWrap="wrap">
             <Trail
               native
               from={{ opacity: 0 }}
