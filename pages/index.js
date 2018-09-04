@@ -80,7 +80,14 @@ export default class App extends Component {
     search: '',
     activeFilter: false,
     selectedStatusBadges: ['draft', 'last-call', 'accepted'],
-    selectedCategoryBadges: ['core', 'networking', 'interface', 'erc', 'informational', 'meta'],
+    selectedCategoryBadges: [
+      'core',
+      'networking',
+      'interface',
+      'erc',
+      'informational',
+      'meta',
+    ],
   }
 
   statusBadgeToggle = badge => {
@@ -221,67 +228,82 @@ export default class App extends Component {
             />
           </Box>
           {activeFilter && (
-            <>
-              <Box mx={4}>
-                <Box display="flex" alignItems="center" mt={3}>
-                  <Text color="#888888" fontWeight="700" fontSize="24px" mr={3}>
-                    Status:
-                  </Text>
-                  <Text color="#888888" fontWeight="700" mr={3}>
-                    Active
-                  </Text>
-                  {['draft', 'last-call', 'accepted'].map(badge => (
-                    <StatusBadge
-                      status={badge}
-                      selected={
-                        selectedStatusBadges.filter(item => item === badge)
-                          .length
-                      }
-                      onClick={() => this.statusBadgeToggle(badge)}
-                    />
-                  ))}
-                  <Text color="#888888" fontWeight="700" mx={3}>
-                    Historical
-                  </Text>
-                  {['deferred', 'final'].map(badge => (
-                    <StatusBadge
-                      status={badge}
-                      selected={
-                        selectedStatusBadges.filter(item => item === badge)
-                          .length
-                      }
-                      onClick={() => this.statusBadgeToggle(badge)}
-                    />
-                  ))}
-                </Box>
-              </Box>
-              <Box mx={3} mt={3}>
-                <Text color="#888888" fontWeight="500" mx={3}>
-                  Category
-                </Text>
-                <Box mx={3} mt={2} display="flex" borderTop="1px solid #DDDDDD">
-                  {[
-                    'core',
-                    'networking',
-                    'interface',
-                    'erc',
-                    'informational',
-                    'meta',
-                  ].map(badge => (
-                    <CategoryBadge
-                      category={badge}
-                      selected={
-                        selectedCategoryBadges.filter(item => item === badge)
-                          .length
-                      }
-                      onClick={() => this.categoryBadgeToggle(badge)}
-                      mr={3}
-                      mt={3}
-                    />
-                  ))}
-                </Box>
-              </Box>
-            </>
+            <Spring from={{ opacity: 0 }} to={{ opacity: 1 }} native>
+              {styles => (
+                <animated.div style={styles}>
+                  <Box mx={4}>
+                    <Box display="flex" alignItems="center" mt={3}>
+                      <Text
+                        color="#888888"
+                        fontWeight="700"
+                        fontSize="24px"
+                        mr={3}
+                      >
+                        Status:
+                      </Text>
+                      <Text color="#888888" fontWeight="700" mr={3}>
+                        Active
+                      </Text>
+                      {['draft', 'last-call', 'accepted'].map(badge => (
+                        <StatusBadge
+                          status={badge}
+                          selected={
+                            selectedStatusBadges.filter(item => item === badge)
+                              .length
+                          }
+                          onClick={() => this.statusBadgeToggle(badge)}
+                        />
+                      ))}
+                      <Text color="#888888" fontWeight="700" mx={3}>
+                        Historical
+                      </Text>
+                      {['deferred', 'final'].map(badge => (
+                        <StatusBadge
+                          status={badge}
+                          selected={
+                            selectedStatusBadges.filter(item => item === badge)
+                              .length
+                          }
+                          onClick={() => this.statusBadgeToggle(badge)}
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+                  <Box mx={3} mt={3}>
+                    <Text color="#888888" fontWeight="500" mx={3}>
+                      Category
+                    </Text>
+                    <Box
+                      mx={3}
+                      mt={2}
+                      display="flex"
+                      borderTop="1px solid #DDDDDD"
+                    >
+                      {[
+                        'core',
+                        'networking',
+                        'interface',
+                        'erc',
+                        'informational',
+                        'meta',
+                      ].map(badge => (
+                        <CategoryBadge
+                          category={badge}
+                          selected={
+                            selectedCategoryBadges.filter(
+                              item => item === badge,
+                            ).length
+                          }
+                          onClick={() => this.categoryBadgeToggle(badge)}
+                          mr={3}
+                          mt={3}
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+                </animated.div>
+              )}
+            </Spring>
           )}
           <Box display="flex" justifyContent="center" flexWrap="wrap">
             {items.map((item, idx) => (
