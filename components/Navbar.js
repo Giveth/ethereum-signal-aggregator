@@ -30,13 +30,14 @@ const Item = styled.div`
   font-weight: 500;
   color: #8a94a6;
   transition: all 0.15s ease 0s;
-  ${({ active }) => active && `
+  ${({ active }) =>
+    active &&
+    `
     border-bottom: 2px solid #0c66ff;
     cursor: pointer;
     font-weight: 700;
     color: black;
-  `}
-  &:hover {
+  `} &:hover {
     border-bottom: 2px solid #0c66ff;
     cursor: pointer;
     font-weight: 700;
@@ -63,8 +64,13 @@ export default class Navbar extends PureComponent {
     return (
       <Container>
         <ContainItems>
-          <Box pl={4} display="flex">
-            <Link route="/"><StyledLogo /></Link>
+          <Box pl={4} display="flex" alignItems="center">
+            <Box mr=".5rem">
+              <img height="24px" src="static/images/brand.png" />
+            </Box>
+            <Link route="/">
+              <StyledLogo />
+            </Link>
           </Box>
           <Box display="flex">{items}</Box>
         </ContainItems>
