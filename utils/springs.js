@@ -3,6 +3,7 @@ export default {
   debug: { tension: 10, friction: 40 },
 
   // Slow spring, can be used to move large things (e.g. a side panel).
+  superLazy: { tension: 50, friction: 40 },
   lazy: { tension: 50, friction: 10 },
 
   // Medium speed spring, can be used to move small objects
