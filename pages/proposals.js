@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Spring, animated } from 'react-spring'
-import { ArrowDown, Link } from '../components/Icons'
+import { ArrowDown, ArrowRight, LinkIcon } from '../components/Icons'
 import Badge from '../components/Badge'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
@@ -9,11 +9,12 @@ import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import Text from '../components/Text'
 import SearchBar from '../components/SearchBar'
+import { Link } from '../routes'
 // import ProgressBar from '../components/ProgressBar'
 
 import proposals from '../data/proposals'
 
-const getStatusBadgeColors = (status, selected) => {
+export const getStatusBadgeColors = (status, selected) => {
   let bg, color, border
   if (status === 'draft') {
     bg = selected ? '#F7BA44' : 'white'
@@ -36,7 +37,7 @@ const getStatusBadgeColors = (status, selected) => {
   return { bg, color, border }
 }
 
-const StatusBadge = props => {
+export const StatusBadge = props => {
   const { status, selected } = props
   const { bg, color, border } = getStatusBadgeColors(status, selected)
   return (
@@ -55,7 +56,7 @@ const StatusBadge = props => {
   )
 }
 
-const CategoryBadge = props => {
+export const CategoryBadge = props => {
   const { category, selected } = props
   return (
     <Badge
@@ -72,10 +73,6 @@ const CategoryBadge = props => {
 }
 
 export default class App extends Component {
-  static async getInitialProps({ query }) {
-    return query
-  }
-
   state = {
     search: '',
     activeFilter: false,
@@ -174,18 +171,26 @@ export default class App extends Component {
                 target="_blank"
                 href={'https://eips.ethereum.org/EIPS/eip-' + id}
               >
-                <Link />
+                <LinkIcon />
               </a>
             </Box>
           </Box>
-          <Box display="flex" flexDirection="column" p={3}>
-            <Box display="flex">
-              <CategoryBadge category={category} selected />
+          <Link route={'/proposals/eip-' + id}>
+            <Box cursor="pointer">
+              <Box display="flex" flexDirection="column" p={3}>
+                <Box display="flex">
+                  <CategoryBadge category={category} selected />
+                </Box>
+                <Text color="#8A94A6" fontWeight="500">
+                  {title}
+                </Text>
+              </Box>
+              <Box p={3} display="flex" justifyContent="flex-end">
+                <ArrowRight />
+              </Box>
             </Box>
-            <Text color="#8A94A6" fontWeight="500">
-              {title}
-            </Text>
-          </Box>
+          </Link>
+
           {/* <Text color="#0A1F44" fontWeight="700" fontSize="20px">
         Stances
       </Text>

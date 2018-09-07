@@ -1,5 +1,6 @@
 const routes = (module.exports = require('next-routes')())
 
-routes.add('/', 'index')
-routes.add('/proposals', 'index')
+routes.add('/', 'proposals')
+routes.add('/proposals', 'proposals')
+routes.add('/proposals/:id', 'proposal')
 routes.add('/projects', 'projects')
