@@ -73,6 +73,36 @@ export const ArrowDown = props => (
   </svg>
 )
 
+export const ArrowRight = props => (
+  <svg
+    width="25"
+    height="24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M14.103 12L9.788 7.707a.996.996 0 0 1 0-1.414 1.009 1.009 0 0 1 1.422 0l5.025 5a.996.996 0 0 1 0 1.414l-5.025 5c-.393.39-1.03.39-1.422 0a.996.996 0 0 1 0-1.414L14.103 12z"
+      fill="#051033"
+      fill-opacity=".01"
+    />
+    <mask id="a" maskUnits="userSpaceOnUse" x="9" y="6" width="8" height="12">
+      <path
+        d="M14.103 12L9.788 7.707a.996.996 0 0 1 0-1.414 1.009 1.009 0 0 1 1.422 0l5.025 5a.996.996 0 0 1 0 1.414l-5.025 5c-.393.39-1.03.39-1.422 0a.996.996 0 0 1 0-1.414L14.103 12z"
+        fill="#fff"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M.448 0H24.57v24H.448V0z"
+        fill="#182C4F"
+      />
+    </g>
+  </svg>
+)
+
 export const Logo = props => (
   <svg
     width="91"
@@ -89,7 +119,7 @@ export const Logo = props => (
   </svg>
 )
 
-export const Link = props => (
+export const LinkIcon = props => (
   <svg
     width="18"
     height="10"
