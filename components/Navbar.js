@@ -52,6 +52,14 @@ const StyledLogo = styled(Logo)`
 `
 
 export default class Navbar extends PureComponent {
+  state = {
+    origin: '',
+  }
+
+  componentDidMount() {
+    this.setState({ origin: document.origin })
+  }
+
   render() {
     const { activeIndex } = this.props
     const items = ['Proposals'].map((text, idx) => (
@@ -64,12 +72,17 @@ export default class Navbar extends PureComponent {
     return (
       <Container>
         <ContainItems>
-          <Box pl={4} display="flex" alignItems="center">
-            <Box mr=".5rem">
-              <img height="24px" src="static/images/brand.png" />
-            </Box>
+          <Box display="flex" alignItems="center">
             <Link route="/">
-              <StyledLogo />
+              <Box display="flex" alignItems="center" cursor="pointer">
+                <Box mr=".5rem">
+                  <img
+                    height="24px"
+                    src={this.state.origin + '/static/images/brand.png'}
+                  />
+                </Box>
+                <StyledLogo />
+              </Box>
             </Link>
           </Box>
           <Box display="flex">{items}</Box>
