@@ -10,6 +10,7 @@ import { Logo } from './Icons'
 
 const Container = styled(Box)`
   height: 3.5rem;
+  padding: 0 2rem;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   box-shadow: 0px -2px 18px 0px rgba(72, 89, 102, 0.25);
