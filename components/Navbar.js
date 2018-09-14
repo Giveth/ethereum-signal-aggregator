@@ -58,7 +58,7 @@ export default class Navbar extends PureComponent {
   }
 
   componentDidMount() {
-    this.setState({ origin: document.origin })
+    this.setState({ origin: origin || document.origin })
   }
 
   render() {
