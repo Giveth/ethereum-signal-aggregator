@@ -92,7 +92,7 @@ export default class App extends Component {
     if (selectedStatusBadges.filter(item => item === badge).length) {
       this.setState({
         selectedStatusBadges: selectedStatusBadges.filter(
-          item => item !== badge,
+          item => item !== badge
         ),
       })
     } else {
@@ -106,7 +106,7 @@ export default class App extends Component {
     if (selectedCategoryBadges.filter(item => item === badge).length) {
       this.setState({
         selectedCategoryBadges: selectedCategoryBadges.filter(
-          item => item !== badge,
+          item => item !== badge
         ),
       })
     } else {
@@ -134,12 +134,12 @@ export default class App extends Component {
         }
         if (selectedStatusBadges.length) {
           filterStatusBadges = selectedStatusBadges.filter(
-            badge => badge === status,
+            badge => badge === status
           ).length
         }
         if (selectedCategoryBadges.length) {
           filterCategoryBadges = selectedCategoryBadges.filter(
-            badge => badge === category,
+            badge => badge === category
           ).length
         }
 
@@ -237,7 +237,12 @@ export default class App extends Component {
               {styles => (
                 <animated.div style={styles}>
                   <Box mx={4}>
-                    <Box display="flex" alignItems="center" mt={3}>
+                    <Box
+                      display="flex"
+                      flexWrap="wrap"
+                      alignItems="center"
+                      mt={3}
+                    >
                       <Text
                         color="#888888"
                         fontWeight="700"
@@ -282,6 +287,7 @@ export default class App extends Component {
                       mx={3}
                       mt={2}
                       display="flex"
+                      flexWrap="wrap"
                       borderTop="1px solid #DDDDDD"
                     >
                       {[
@@ -296,7 +302,7 @@ export default class App extends Component {
                           category={badge}
                           selected={
                             selectedCategoryBadges.filter(
-                              item => item === badge,
+                              item => item === badge
                             ).length
                           }
                           onClick={() => this.categoryBadgeToggle(badge)}
